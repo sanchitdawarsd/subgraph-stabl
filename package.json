@@ -1,0 +1,26 @@
+{
+  "name": "satin-subgraph",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "fork":"graph deploy sanchitdawarsd/satintest --debug-fork QmatrWg1PpWGxUTR4nvEHb21pNDcBQEsMszGwmGR1LPGr7 --ipfs http://localhost:5001 --node http://localhost:8020",
+    "auth":"graph auth --product hosted-service 7b4791c665a44c89a4fd952b99de87fb",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ sanchitdawarsd/satintestnew",
+    "deploy-staging": "graph deploy --product hosted-service belbix/dystopia-staging",
+    "create-local": "graph create --node http://localhost:8020/ dystopia-exchange/dystopia",
+    "remove-local": "graph remove --node http://localhost:8020/ dystopia-exchange/dystopia",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dystopia-exchange/dystopia  -l v0.0.1"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.31.0",
+    "@graphprotocol/graph-ts": "0.27.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "matchstick-as": "^0.5.0",
+    "typescript": "^4.7.2"
+  }
+}
