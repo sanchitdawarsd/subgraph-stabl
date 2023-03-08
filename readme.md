@@ -1,6 +1,4 @@
-# Dystopia Subgraph
-![TESTS](https://github.com/dystopia-exchange/dystopia-subgraph-v3/actions/workflows/test.yml/badge.svg)
-
+# SATIN Subgraph
 
 ## Install
 
