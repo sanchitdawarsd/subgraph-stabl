@@ -7,7 +7,7 @@
     "build": "graph build",
     "fork":"graph deploy sanchitdawarsd/satintest --debug-fork QmatrWg1PpWGxUTR4nvEHb21pNDcBQEsMszGwmGR1LPGr7 --ipfs http://localhost:5001 --node http://localhost:8020",
     "auth":"graph auth --product hosted-service 7b4791c665a44c89a4fd952b99de87fb",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ sanchitdawarsd/satintestnew",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ sanchitdawarsd/satin-mainnet",
     "deploy-staging": "graph deploy --product hosted-service belbix/dystopia-staging",
     "create-local": "graph create --node http://localhost:8020/ dystopia-exchange/dystopia",
     "remove-local": "graph remove --node http://localhost:8020/ dystopia-exchange/dystopia",

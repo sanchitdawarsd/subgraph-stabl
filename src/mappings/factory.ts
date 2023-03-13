@@ -111,7 +111,7 @@ function getOrCreateToken(tokenAdr: string): Token {
     token.tradeVolumeUSD = ZERO_BD
     token.untrackedVolumeUSD = ZERO_BD
     token.totalLiquidity = ZERO_BD
-    token.isWhitelisted = false
+    token.isWhitelisted = isOnWhitelist(token.id)
     token.whitelist = []
     token.txCount = ZERO_BI
   }

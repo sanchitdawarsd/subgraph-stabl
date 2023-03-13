@@ -12,9 +12,9 @@ dataSources:
     name: Factory
     network: matic
     source:
-      address: "0xD18FEA9fE31E090240eb5056Ce105ec32039B1D2"
+      address: "0x150396e304d58495679444Ce4e7aBcFf653a6274"
       abi: FactoryAbi
-      startBlock: 40111963
+      startBlock: 40119369
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -40,9 +40,9 @@ dataSources:
     name: Controller
     network: matic
     source:
-      address: "0x5799cdDCF67B0F049010D66ADC4C4c3431518ebA"
+      address: "0x7B5d052E9d45f50C7aCC350716Ea0581131FD3b0"
       abi: ControllerAbi
-      startBlock: 40111963
+      startBlock: 40119369
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -200,7 +200,7 @@ templates:
         - name: MinterAbi
           file: ./abis/minter.json
       eventHandlers:
-        - event: GaugeCreated(indexed address,address,indexed address,indexed address)
+        - event: GaugeCreated(indexed address,address,address,indexed address,indexed address)
           handler: handleGaugeCreated
         - event: Whitelisted(indexed address,indexed address)
           handler: handleWhitelisted

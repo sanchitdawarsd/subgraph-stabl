@@ -22,21 +22,22 @@ import {MinterAbi} from '../types/templates/VoterTemplate/MinterAbi';
 
 
 export function handleGaugeCreated(event: GaugeCreated): void {
+  log.info('voter to be displaye', [])
   let gauge = getOrCreateGauge(event.params.gauge.toHexString())
   const voterCtr = VoterAbi.bind(event.address)
   log.info('voter to be displayed: {}', [event.address.toHexString()])
 
-  let bribe = BribeEntity.load(event.params.bribe.toHexString())
-  log.info('bribe to be displayed: {}', [event.params.bribe.toHexString()])
+  let bribe = BribeEntity.load(event.params.external_bribe.toHexString())
+  log.info('bribe to be displayed: {}', [event.params.external_bribe.toHexString()])
   
   // fetch info if null
   if (!bribe) {
-    bribe = new BribeEntity(event.params.bribe.toHexString())
+    bribe = new BribeEntity(event.params.external_bribe.toHexString())
     bribe.pair = event.params.pool.toHexString()
     bribe.ve = voterCtr.ve().toHexString()
     bribe.veUnderlying = voterCtr.token().toHexString();
     bribe.bribeTokensAdr = [];
-    BribeTemplate.create(event.params.bribe);
+    BribeTemplate.create(event.params.external_bribe);
     bribe.save()
   }
 if(event.params.pool.toHexString() == ADDRESS_4POOL){
@@ -158,7 +159,7 @@ function getOrCreateGauge(
   if (!gauge) {
     gauge = new GaugeEntity(gaugeAdr)
     const gaugeCtr = GaugeAbi.bind(Address.fromString(gaugeAdr));
-    const bribe = gaugeCtr.try_bribe()
+    const bribe = gaugeCtr.try_external_bribe()
     if (bribe.reverted) {
       log.critical("BRIBE NOT FOUND, gauge: {}", [gaugeAdr]);
     }
@@ -230,39 +231,40 @@ function fetchAllVotedPools(veNFT: VeNFTEntity, voterAdr: string): void {
       }
       log.info('Message to be displayed: {}', [pool.value.toHexString()])
       if(pool.value.toHexString() == ADDRESS_4POOL){
+        log.info("mess1",[])
         const fourpool = Fourpool.load(pool.value.toHex()) as Fourpool;
-      const gaugeAdr = fourpool.gauge as string;
-      if (!gaugeAdr) {
-        log.info("NO GAUGE FOR VOTE {}", [pool.value.toHex()]);
-        continue;
-      }
-      log.info('Message3 to be displayed: {}', [gaugeAdr])
-      const vote = getOrCreateVote(voterAdr, veNFT.id, gaugeAdr);
-
-      vote.pool = pool.value.toHex()
-      vote.weight = formatUnits(voterCtr.votes(BigInt.fromString(veNFT.id), pool.value), BigInt.fromI32(18));
-      log.info('Message4 to be displayed: {}', [vote.weight.toString()])
-      vote.weightPercent = abs(vote.weight.div(vePower).times(BigDecimal.fromString('100')));
-
-      updateGaugeVotes(
-        gaugeAdr,
-        voterCtr,
-        pool.value.toHex(),
-        totalWeight,
-        weekly,
-        ve.underlying
-      );
-
-      const arr = veNFT.voteIds;
-      arr.push(vote.id);
-      veNFT.voteIds = arr;
-      veNFT.save();
-
-      vote.save();
+        const gaugeAdr = fourpool.gauge as string;
+        if (!gaugeAdr) {
+          log.info("NO GAUGE FOR VOTE {}", [pool.value.toHex()]);
+          continue;
+        }
+        log.info('Message3 to be displayed: {}', [gaugeAdr])
+        const vote = getOrCreateVote(voterAdr, veNFT.id, gaugeAdr);
+  
+        vote.pool = pool.value.toHex()
+        vote.weight = formatUnits(voterCtr.votes(BigInt.fromString(veNFT.id), pool.value), BigInt.fromI32(18));
+        log.info('Message4 to be displayed: {}', [vote.weight.toString()])
+        vote.weightPercent = abs(vote.weight.div(vePower).times(BigDecimal.fromString('100')));
+  
+        updateGaugeVotes(
+          gaugeAdr,
+          voterCtr,
+          pool.value.toHex(),
+          totalWeight,
+          weekly,
+          ve.underlying
+        );
+  
+        const arr = veNFT.voteIds;
+        arr.push(vote.id);
+        veNFT.voteIds = arr;
+        veNFT.save();
+  
+        vote.save();
       }
       else{
-      
-      const pair = Pair.load(pool.value.toHex()) as Pair;
+        log.info("mess2",[])
+        const pair = Pair.load(pool.value.toHex()) as Pair;
         const gaugeAdr = pair.gauge as string;
         if (!gaugeAdr) {
           log.info("NO GAUGE FOR VOTE {}", [pool.value.toHex()]);
@@ -291,6 +293,7 @@ function fetchAllVotedPools(veNFT: VeNFTEntity, voterAdr: string): void {
         veNFT.save();
   
         vote.save();
+        
       }
     }
   }

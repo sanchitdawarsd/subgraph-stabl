@@ -1,9 +1,9 @@
 import {Address, BigDecimal, BigInt, dataSource, log} from '@graphprotocol/graph-ts';
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
-export const ADDRESS_SATIN = '0x740d3aB670a593D4981F7DC128B9d337215d741A'
-export const ADDRESS_4POOL = '0x57185bff636dcc8a81ecfae7812ec06a71264fbf'
-export const ADDRESS_REWARDTOKEN = '0xCE565e9dD883492d53Ff59305E6595790a8654BC'
+export const ADDRESS_SATIN = '0x6913717b010E8c8E05043B5eB22cfB63A22C85AE'
+export const ADDRESS_4POOL = "0x844b7bd45bc949c96329fdc953a516a8e1daec51"
+export const ADDRESS_REWARDTOKEN = '0x1C9B56F6608904876b279821D037aEED8bea48D9'
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
@@ -69,9 +69,32 @@ export function whitelisted(): Address[] {
       Address.fromString('0xc2132d05d31c914a87c6611c10748aeb04b58e8f'), // USDT
       Address.fromString('0xa3Fa99A148fA48D14Ed51d610c367C61876997F1'), // MAI
       Address.fromString('0x45c32fA6DF82ead1e2EF74d17b76547EDdFaFF89'), // FRAX
-      Address.fromString('0xacfdecb377e7a8b26ce033bdb01cb7630ef07809'), // CASH
+      Address.fromString('0x80487b4f8f70e793A81a42367c225ee0B94315DF'), // CASH
       Address.fromString('0x3a58a54c066fdc0f2d55fc9c89f0415c92ebf3c4'), // stmatic
       Address.fromString('0x7ee811561c61efc79664ab0ac120d7968157629a'), // SATIN
+      Address.fromString('0xfa68fb4628dff1028cfec22b4162fccd0d45efb6'), // MaticX
+      Address.fromString('0x434e7bbbc9ae9f4ffade0b3175fef6e8a4a1c505'), // LQDR
+      Address.fromString('0xb5DFABd7fF7F83BAB83995E72A52B97ABb7bcf63'), // USDR
+      Address.fromString('0xbC2b48BC930Ddc4E5cFb2e87a45c379Aab3aac5C'), // DOLA
+      Address.fromString('0xFbdd194376de19a88118e84E279b977f165d01b8'), // BIFI
+      Address.fromString('0x596eBE76e2DB4470966ea395B0d063aC6197A8C5'), // JRT
+      Address.fromString('0xbd1fe73e1f12bd2bc237de9b626f056f21f86427'), // jMXN
+      Address.fromString('0x18ec0A6E18E5bc3784fDd3a3634b31245ab704F6'), // EURe
+      Address.fromString('0x491a4eB4f1FC3BfF8E1d2FC856a6A46663aD556f'), // BRZ
+      Address.fromString('0x62F594339830b90AE4C084aE7D223fFAFd9658A7'), // SPHERE
+      Address.fromString('0xd23Ed8cA350CE2631F7EcDC5E6bf80D0A1DeBB7B'), // TAROT
+      Address.fromString('0x1e3c6c53F9f60BF8aAe0D7774C21Fa6b1afddC57'), // SHRAP
+      Address.fromString('0x74ccbe53F77b08632ce0CB91D3A545bF6B8E0979'), // fBOMB
+      Address.fromString('0x94DC0b13E66ABa9450b3Cc44c2643BBb4C264BC7'), // LIBERA
+      Address.fromString('0x525b43A49bE2Ed530e3516C22bd7ECbcF1586AD4'), // FS
+      Address.fromString('0x91993f2101cc758D0dEB7279d41e880F7dEFe827'), // gDAI
+      Address.fromString('0x1d734A02eF1e1f5886e66b0673b71Af5B53ffA94'), // SD
+      Address.fromString('0x4e3decbb3645551b8a19f0ea1678079fcb33fb4c'), // jEUR
+      Address.fromString('0xf2f77FE7b8e66571E0fca7104c4d670BF1C8d722'), // jBRL
+      Address.fromString('0xa411c9Aa00E020e4f88Bc19996d29c5B7ADB4ACf'), // XOC
+      Address.fromString('0x580A84C73811E1839F75d86d75d88cCa0c241fF4'), // QI
+      Address.fromString('0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD'), // wstmatic
+      
     ]
   } else if (network == 'bsc') {
     return [
